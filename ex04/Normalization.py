@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-"""ex04 - Min-max normalization: x' = (x - min) / (max - min), in [0, 1].
-Usage: ./Normalization.py [Train_knight.csv] [Test_knight.csv]
-Min and max are computed on the Train file and applied to both files."""
 import os
 import sys
 
@@ -9,15 +5,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 TARGET = "knight"
-
-
-def find_csv(name):
-    here = os.path.dirname(os.path.abspath(__file__))
-    for d in (os.getcwd(), here, os.path.join(here, "..")):
-        path = os.path.join(d, name)
-        if os.path.isfile(path):
-            return path
-    sys.exit(f"Error: {name} not found")
 
 
 def pick_mixed_pair(train):
@@ -28,8 +15,8 @@ def pick_mixed_pair(train):
 
 
 def main():
-    train_path = sys.argv[1] if len(sys.argv) > 1 else find_csv("Train_knight.csv")
-    test_path = sys.argv[2] if len(sys.argv) > 2 else find_csv("Test_knight.csv")
+    train_path = sys.argv[1] if len(sys.argv) > 1 else "Train_knight.csv"
+    test_path = sys.argv[2] if len(sys.argv) > 2 else "Test_knight.csv"
     try:
         train = pd.read_csv(train_path)
         test = pd.read_csv(test_path)

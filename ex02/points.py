@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-"""ex02 - 4 scatter plots: a pair of features that separates the classes,
-a pair that mixes them, each for Train (Jedi/Sith) and Test (single color)."""
 import os
 import sys
 
@@ -8,15 +5,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 TARGET = "knight"
-
-
-def find_csv(name):
-    here = os.path.dirname(os.path.abspath(__file__))
-    for d in (os.getcwd(), here, os.path.join(here, "..")):
-        path = os.path.join(d, name)
-        if os.path.isfile(path):
-            return path
-    sys.exit(f"Error: {name} not found")
 
 
 def pick_pairs(train):
@@ -46,8 +34,8 @@ def scatter_test(ax, df, fx, fy):
 
 def main():
     try:
-        train = pd.read_csv(find_csv("Train_knight.csv"))
-        test = pd.read_csv(find_csv("Test_knight.csv"))
+        train = pd.read_csv("Train_knight.csv")
+        test = pd.read_csv("Test_knight.csv")
     except (pd.errors.ParserError, pd.errors.EmptyDataError) as e:
         sys.exit(f"Error: invalid CSV ({e})")
 
@@ -60,7 +48,6 @@ def main():
         scatter_train(axes[0][col], train, fx, fy)
         scatter_test(axes[1][col], test, fx, fy)
     fig.tight_layout()
-    fig.savefig("points.png", dpi=120)
     plt.show()
 
 

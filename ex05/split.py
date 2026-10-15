@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-"""ex05 - Randomly split a CSV into Training_knight.csv (80%) and Validation_knight.csv (20%).
-Usage: ./split.py Train_knight.csv [--seed N]
-The split is stratified on 'knight' so both files keep the Jedi/Sith proportions."""
 import argparse
 import sys
 
