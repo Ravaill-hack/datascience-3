@@ -13,9 +13,8 @@ TEST_FILE = "Test_knight.csv"
 
 def build_grid(n):
 	"""
-	Builds the grid of the plot
+	Builds the grid depending on the number of plots
 	"""
-
 	nrows = -(-n // NCOLS)
 	fig, axes = plt.subplots(nrows, NCOLS, figsize=(3 * NCOLS, 2.4 * nrows))
 	axes = np.atleast_1d(axes).ravel()
@@ -26,7 +25,7 @@ def build_grid(n):
 
 def plot_test():
 	"""
-	Create the plot for the test dataset
+	Creates the plot for the test dataset
 	"""
 	df = pd.read_csv(TEST_FILE)
 	features = [c for c in df.columns if c != TARGET]
@@ -42,7 +41,7 @@ def plot_test():
 
 def plot_train():
 	"""
-	Create the plot for the train dataset
+	Creates the plot for the train dataset
 	"""
 	df = pd.read_csv(TRAIN_FILE)
 	features = [c for c in df.columns if c != TARGET]
@@ -61,10 +60,13 @@ def plot_train():
 
 
 def main():
+	"""
+	Draws the two plots
+	"""
 	try:
 		plot_test()
 		plot_train()
-	except (pd.errors.ParserError, pd.errors.EmptyDataError) as e:
+	except (pd.errors.ParserError, pd.errors.EmptyDataError, OSError) as e:
 		sys.exit(f"Error: invalid CSV ({e})")
 	plt.show()
 

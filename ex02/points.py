@@ -36,7 +36,7 @@ def main():
     try:
         train = pd.read_csv("Train_knight.csv")
         test = pd.read_csv("Test_knight.csv")
-    except (pd.errors.ParserError, pd.errors.EmptyDataError) as e:
+    except (pd.errors.ParserError, pd.errors.EmptyDataError, OSError) as e:
         sys.exit(f"Error: invalid CSV ({e})")
 
     separated, mixed = pick_pairs(train)
