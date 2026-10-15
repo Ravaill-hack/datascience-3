@@ -18,8 +18,6 @@ def build_grid(n):
 	nrows = -(-n // NCOLS)
 	fig, axes = plt.subplots(nrows, NCOLS, figsize=(3 * NCOLS, 2.4 * nrows))
 	axes = np.atleast_1d(axes).ravel()
-	for ax in axes[n:]:
-		ax.axis("off")
 	return fig, axes
 
 
